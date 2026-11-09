@@ -1,0 +1,176 @@
+name: oraclex
+
+services:
+  postgres:
+    image: postgres:15.15-alpine3.23
+    pull_policy: never
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-oraclex}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-oraclex}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-oraclex} -d ${POSTGRES_DB:-oraclex}"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    networks: [private]
+    security_opt: ["no-new-privileges:true"]
+
+  ollama:
+    image: ollama/ollama:0.34.1
+    pull_policy: never
+    restart: unless-stopped
+    volumes:
+      - ollama_models:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    networks: [private]
+    security_opt: ["no-new-privileges:true"]
+
+  chroma:
+    image: oraclex/backend:1.5.0
+    pull_policy: never
+    restart: unless-stopped
+    command: ["chroma", "run", "--host", "0.0.0.0", "--port", "8000", "--path", "/app/data/chromadb"]
+    environment:
+      ANONYMIZED_TELEMETRY: "false"
+    volumes:
+      - backend_chroma:/app/data/chromadb
+    tmpfs:
+      - /tmp:size=128m,mode=1777
+    read_only: true
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v2/heartbeat', timeout=3)"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    networks: [private]
+    security_opt: ["no-new-privileges:true"]
+
+  backend:
+    image: oraclex/backend:1.5.0
+    pull_policy: never
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      chroma:
+        condition: service_healthy
+      ollama:
+        condition: service_started
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT:-production}
+      SECRET_KEY: ${SECRET_KEY:?Set SECRET_KEY in .env}
+      BOOTSTRAP_ENABLED: ${BOOTSTRAP_ENABLED:-false}
+      BOOTSTRAP_TOKEN: ${BOOTSTRAP_TOKEN:-}
+      DEMO_MODE: "false"
+      DEMO_SEED_ON_STARTUP: "false"
+      DATABASE_URL: postgresql://${POSTGRES_USER:-oraclex}:${POSTGRES_PASSWORD_URLENCODED:?Set POSTGRES_PASSWORD_URLENCODED in .env}@postgres:5432/${POSTGRES_DB:-oraclex}
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_DEFAULT_MODEL: ${OLLAMA_DEFAULT_MODEL:-oraclex-approved:1}
+      MODEL_REQUIRED_FOR_READINESS: ${MODEL_REQUIRED_FOR_READINESS:-false}
+      WORKER_REQUIRED_FOR_READINESS: "true"
+      SIMULATED_AI_FALLBACK: "false"
+      CHROMA_HOST: chroma
+      CHROMA_PORT: "8000"
+      UPLOAD_DIR: /app/data/uploads
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:?Set ALLOWED_ORIGINS in .env}
+    volumes:
+      - backend_uploads:/app/data/uploads
+    tmpfs:
+      - /tmp:size=128m,mode=1777
+    read_only: true
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health/ready', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    networks: [private]
+    security_opt: ["no-new-privileges:true"]
+
+  worker:
+    image: oraclex/backend:1.5.0
+    pull_policy: never
+    restart: unless-stopped
+    command: ["python", "-m", "app.workers.ingestion"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      chroma:
+        condition: service_healthy
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT:-production}
+      SECRET_KEY: ${SECRET_KEY:?Set SECRET_KEY in .env}
+      BOOTSTRAP_ENABLED: "false"
+      DEMO_MODE: "false"
+      DEMO_SEED_ON_STARTUP: "false"
+      DATABASE_URL: postgresql://${POSTGRES_USER:-oraclex}:${POSTGRES_PASSWORD_URLENCODED:?Set POSTGRES_PASSWORD_URLENCODED in .env}@postgres:5432/${POSTGRES_DB:-oraclex}
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_DEFAULT_MODEL: ${OLLAMA_DEFAULT_MODEL:-oraclex-approved:1}
+      MODEL_REQUIRED_FOR_READINESS: "false"
+      WORKER_REQUIRED_FOR_READINESS: "true"
+      SIMULATED_AI_FALLBACK: "false"
+      CHROMA_HOST: chroma
+      CHROMA_PORT: "8000"
+      UPLOAD_DIR: /app/data/uploads
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:?Set ALLOWED_ORIGINS in .env}
+    volumes:
+      - backend_uploads:/app/data/uploads
+    tmpfs:
+      - /tmp:size=128m,mode=1777
+    read_only: true
+    networks: [private]
+    security_opt: ["no-new-privileges:true"]
+
+  frontend:
+    image: oraclex/frontend:1.5.0
+    pull_policy: never
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${ORACLEX_HTTP_BIND:-127.0.0.1}:${ORACLEX_HTTP_PORT:-3000}:80"
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx:size=32m,mode=0755
+      - /var/run:size=4m,mode=0755
+      - /tmp:size=16m,mode=1777
+    networks: [private]
+    security_opt: ["no-new-privileges:true"]
+
+  model-import:
+    image: ollama/ollama:0.34.1
+    pull_policy: never
+    profiles: ["model-tools"]
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+      OLLAMA_DEFAULT_MODEL: ${OLLAMA_DEFAULT_MODEL:-oraclex-approved:1}
+    entrypoint: ["/bin/sh", "/opt/oraclex/import-model.sh"]
+    volumes:
+      - ollama_models:/root/.ollama
+      - ./deployment/model:/models:ro
+      - ./deployment/scripts/import-model.sh:/opt/oraclex/import-model.sh:ro
+    networks: [private]
+    security_opt: ["no-new-privileges:true"]
+
+networks:
+  private:
+    internal: true
+
+volumes:
+  postgres_data:
+  ollama_models:
+  backend_uploads:
+  backend_chroma:
+

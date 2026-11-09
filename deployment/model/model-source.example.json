@@ -1,0 +1,14 @@
+{
+  "model": "replace-with-approved-model-and-version",
+  "ollama_tag": "oraclex-approved:1",
+  "original_filename": "model.gguf",
+  "source_url": "https://replace-with-approved-source",
+  "source_sha256": "replace-with-64-character-sha256",
+  "quantisation": "replace-with-quantisation",
+  "licence": "replace-with-SPDX-or-exact-licence-name",
+  "expected_ram_gib": 0,
+  "target_cpu": "replace-with-target-cpu",
+  "target_gpu": "none-or-approved-gpu",
+  "approved_by": "replace-with-approval-owner",
+  "approved_on": "YYYY-MM-DD"
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "release": "1.5.0",
+  "platform": "linux/amd64",
+  "artifacts": [
+    {
+      "name": "python-build-base",
+      "reference": "python:3.11.16-slim-bookworm",
+      "digest": "sha256:528257d48c1da0dcecc2e725d1ae34498d60c965f1241e39cd6a85a8859bdf84",
+      "source": "https://hub.docker.com/_/python",
+      "license": "Python Software Foundation License and Debian component licences"
+    },
+    {
+      "name": "frontend-runtime-base",
+      "reference": "nginx:1.29.6-alpine3.23",
+      "digest": "sha256:f46cb72c7df02710e693e863a983ac42f6a9579058a59a35f1ae36c9958e4ce0",
+      "source": "https://hub.docker.com/_/nginx",
+      "license": "BSD-2-Clause and Alpine component licences"
+    },
+    {
+      "name": "database",
+      "reference": "postgres:15.15-alpine3.23",
+      "digest": "sha256:1d1095b0503145be79c79239372aefadfacf6b7c33c9245bbf99ce4b6b89c737",
+      "source": "https://hub.docker.com/_/postgres",
+      "license": "PostgreSQL License and Alpine component licences"
+    },
+    {
+      "name": "model-runtime",
+      "reference": "ollama/ollama:0.34.1",
+      "digest": "sha256:0c0a83210471fb50226bcdc2d6611d20ab13ae87e024cc304c94a6a5765c5e65",
+      "source": "https://hub.docker.com/r/ollama/ollama",
+      "license": "MIT; bundled runtime component licences also apply"
+    }
+  ]
+}
+

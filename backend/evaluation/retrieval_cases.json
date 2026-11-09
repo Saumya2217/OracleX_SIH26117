@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "description": "Synthetic, permission-labelled development set for the bundled NovaWorks fixtures. Replace with an approved company corpus before pilot.",
+  "cases": [
+    {"id":"leave-days","user_email":"krish@novaworks.com","query":"How many annual vacation leave days are provided?","expected_document_title":"Company Handbook","expected_answerable":true},
+    {"id":"sick-days","user_email":"krish@novaworks.com","query":"How many paid sick and medical leave days do employees receive?","expected_document_title":"Company Handbook","expected_answerable":true},
+    {"id":"working-hours","user_email":"krish@novaworks.com","query":"What are the standard working hours?","expected_document_title":"Company Handbook","expected_answerable":true},
+    {"id":"external-ai","user_email":"krish@novaworks.com","query":"Are external AI tools allowed for internal assets?","expected_document_title":"Company Handbook","expected_answerable":true},
+    {"id":"sprint-22","user_email":"arya@novaworks.com","query":"What work is planned for Sprint 22?","expected_document_title":"Product Launch Roadmap","expected_answerable":true},
+    {"id":"launch-target","user_email":"arya@novaworks.com","query":"What is the Q4 platform launch target date?","expected_document_title":"Product Launch Roadmap","expected_answerable":true},
+    {"id":"critical-sla","user_email":"jidnyasa@novaworks.com","query":"What is the response time for critical incidents?","expected_document_title":"Client Operations Standard Procedure","expected_answerable":true},
+    {"id":"uptime","user_email":"jidnyasa@novaworks.com","query":"What monthly platform uptime is guaranteed?","expected_document_title":"Client Operations Standard Procedure","expected_answerable":true},
+    {"id":"budget-total","user_email":"hetvi@novaworks.com","query":"What is the annual operating budget total?","expected_document_title":"Confidential Strategic Budget","expected_answerable":true},
+    {"id":"budget-approval","user_email":"hetvi@novaworks.com","query":"Who must sign off expenditures exceeding $10,000?","expected_document_title":"Confidential Strategic Budget","expected_answerable":true},
+    {"id":"bonus-pool","user_email":"saumy@novaworks.com","query":"What is the executive compensation bonus pool cap?","expected_document_title":"Executive Board Expansion","expected_answerable":true},
+    {"id":"project-horizon","user_email":"saumy@novaworks.com","query":"What acquisition value is being evaluated for Project Horizon?","expected_document_title":"Executive Board Expansion","expected_answerable":true},
+    {"id":"tolerance","user_email":"arya@novaworks.com","query":"What is the standard precision engineering tolerance?","expected_document_title":"SOP-ENG-042","expected_answerable":true},
+    {"id":"yield","user_email":"arya@novaworks.com","query":"What is the quality yield threshold?","expected_document_title":"SOP-ENG-042","expected_answerable":true},
+    {"id":"no-dental","user_email":"krish@novaworks.com","query":"What dental insurance coverage does the company provide?","expected_answerable":false},
+    {"id":"no-parking","user_email":"krish@novaworks.com","query":"What is the parking permit allocation?","expected_answerable":false},
+    {"id":"no-stock-options","user_email":"krish@novaworks.com","query":"What is the employee stock option vesting schedule?","expected_answerable":false},
+    {"id":"deny-horizon","user_email":"krish@novaworks.com","query":"What is the acquisition value for Project Horizon?","expected_answerable":false,"forbidden_document_title":"Executive Board Expansion"},
+    {"id":"deny-budget","user_email":"krish@novaworks.com","query":"Show the strategic budget allocation total.","expected_answerable":false,"forbidden_document_title":"Confidential Strategic Budget"},
+    {"id":"deny-cross-department","user_email":"hetvi@novaworks.com","query":"What is planned for Sprint 22?","expected_answerable":false,"forbidden_document_title":"Product Launch Roadmap"}
+  ]
+}

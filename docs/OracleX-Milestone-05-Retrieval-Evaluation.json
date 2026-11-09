@@ -1,0 +1,671 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-18T15:48:38.602367+00:00",
+  "scope": "Synthetic development evaluation using bundled NovaWorks fixtures; not a company-pilot acceptance result.",
+  "corpus": "backend/evaluation/retrieval_cases.json",
+  "embedding": {
+    "model": "oraclex-deterministic-hash-v1",
+    "dimensions": 384,
+    "network_required": false
+  },
+  "acceptance_gates": {
+    "answerable_recall_at_5": 0.9,
+    "abstention_accuracy": 0.95,
+    "access_control_accuracy": 1.0
+  },
+  "hybrid_gate_passed": true,
+  "results": {
+    "lexical": {
+      "mode": "lexical",
+      "case_count": 20,
+      "answerable_recall_at_5": 1.0,
+      "abstention_accuracy": 1.0,
+      "access_control_accuracy": 1.0,
+      "passed_cases": 20,
+      "details": [
+        {
+          "id": "leave-days",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Company Handbook",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "sick-days",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Company Handbook",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "working-hours",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Company Handbook",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "external-ai",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Company Handbook",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "sprint-22",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Product Launch Roadmap (Q4 2026)"
+          ],
+          "expected_document_title": "Product Launch Roadmap",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "launch-target",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Product Launch Roadmap (Q4 2026)"
+          ],
+          "expected_document_title": "Product Launch Roadmap",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "critical-sla",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Client Operations Standard Procedure (SOP-OPS-202)"
+          ],
+          "expected_document_title": "Client Operations Standard Procedure",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "uptime",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Client Operations Standard Procedure (SOP-OPS-202)"
+          ],
+          "expected_document_title": "Client Operations Standard Procedure",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "budget-total",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Confidential Strategic Budget 2026 (FIN-CONFIDENTIAL)"
+          ],
+          "expected_document_title": "Confidential Strategic Budget",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "budget-approval",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Confidential Strategic Budget 2026 (FIN-CONFIDENTIAL)"
+          ],
+          "expected_document_title": "Confidential Strategic Budget",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "bonus-pool",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Executive Board Expansion & Compensation Plan (RESTRICTED)"
+          ],
+          "expected_document_title": "Executive Board Expansion",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "project-horizon",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Executive Board Expansion & Compensation Plan (RESTRICTED)"
+          ],
+          "expected_document_title": "Executive Board Expansion",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "tolerance",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "SOP-ENG-042: High-Precision Component Tolerances"
+          ],
+          "expected_document_title": "SOP-ENG-042",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "yield",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "SOP-ENG-042: High-Precision Component Tolerances"
+          ],
+          "expected_document_title": "SOP-ENG-042",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "no-dental",
+          "category": "unanswerable",
+          "passed": true,
+          "retrieved_titles": [],
+          "expected_document_title": null,
+          "forbidden_document_title": null
+        },
+        {
+          "id": "no-parking",
+          "category": "unanswerable",
+          "passed": true,
+          "retrieved_titles": [],
+          "expected_document_title": null,
+          "forbidden_document_title": null
+        },
+        {
+          "id": "no-stock-options",
+          "category": "unanswerable",
+          "passed": true,
+          "retrieved_titles": [],
+          "expected_document_title": null,
+          "forbidden_document_title": null
+        },
+        {
+          "id": "deny-horizon",
+          "category": "unanswerable",
+          "passed": true,
+          "retrieved_titles": [],
+          "expected_document_title": null,
+          "forbidden_document_title": "Executive Board Expansion"
+        },
+        {
+          "id": "deny-budget",
+          "category": "unanswerable",
+          "passed": true,
+          "retrieved_titles": [],
+          "expected_document_title": null,
+          "forbidden_document_title": "Confidential Strategic Budget"
+        },
+        {
+          "id": "deny-cross-department",
+          "category": "unanswerable",
+          "passed": true,
+          "retrieved_titles": [],
+          "expected_document_title": null,
+          "forbidden_document_title": "Product Launch Roadmap"
+        }
+      ]
+    },
+    "vector": {
+      "mode": "vector",
+      "case_count": 20,
+      "answerable_recall_at_5": 1.0,
+      "abstention_accuracy": 0.0,
+      "access_control_accuracy": 1.0,
+      "passed_cases": 14,
+      "details": [
+        {
+          "id": "leave-days",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Company Handbook",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "sick-days",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Company Handbook",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "working-hours",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Company Handbook",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "external-ai",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Company Handbook",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "sprint-22",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Product Launch Roadmap (Q4 2026)",
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)",
+            "SOP-ENG-042: High-Precision Component Tolerances"
+          ],
+          "expected_document_title": "Product Launch Roadmap",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "launch-target",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Product Launch Roadmap (Q4 2026)",
+            "SOP-ENG-042: High-Precision Component Tolerances",
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Product Launch Roadmap",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "critical-sla",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)",
+            "Client Operations Standard Procedure (SOP-OPS-202)",
+            "Company Handbook & Leave Policy (HR-001)",
+            "SOP-ENG-042: High-Precision Component Tolerances"
+          ],
+          "expected_document_title": "Client Operations Standard Procedure",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "uptime",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)",
+            "Client Operations Standard Procedure (SOP-OPS-202)",
+            "SOP-ENG-042: High-Precision Component Tolerances",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Client Operations Standard Procedure",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "budget-total",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Confidential Strategic Budget 2026 (FIN-CONFIDENTIAL)",
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)",
+            "SOP-ENG-042: High-Precision Component Tolerances"
+          ],
+          "expected_document_title": "Confidential Strategic Budget",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "budget-approval",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Confidential Strategic Budget 2026 (FIN-CONFIDENTIAL)",
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)",
+            "SOP-ENG-042: High-Precision Component Tolerances"
+          ],
+          "expected_document_title": "Confidential Strategic Budget",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "bonus-pool",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Executive Board Expansion & Compensation Plan (RESTRICTED)",
+            "Product Launch Roadmap (Q4 2026)",
+            "Confidential Strategic Budget 2026 (FIN-CONFIDENTIAL)",
+            "Client Operations Standard Procedure (SOP-OPS-202)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Executive Board Expansion",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "project-horizon",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)",
+            "Executive Board Expansion & Compensation Plan (RESTRICTED)",
+            "Product Launch Roadmap (Q4 2026)",
+            "Company Handbook & Leave Policy (HR-001)",
+            "Confidential Strategic Budget 2026 (FIN-CONFIDENTIAL)"
+          ],
+          "expected_document_title": "Executive Board Expansion",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "tolerance",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "SOP-ENG-042: High-Precision Component Tolerances",
+            "Product Launch Roadmap (Q4 2026)",
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "SOP-ENG-042",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "yield",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "SOP-ENG-042: High-Precision Component Tolerances",
+            "Product Launch Roadmap (Q4 2026)",
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "SOP-ENG-042",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "no-dental",
+          "category": "unanswerable",
+          "passed": false,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": null,
+          "forbidden_document_title": null
+        },
+        {
+          "id": "no-parking",
+          "category": "unanswerable",
+          "passed": false,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": null,
+          "forbidden_document_title": null
+        },
+        {
+          "id": "no-stock-options",
+          "category": "unanswerable",
+          "passed": false,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": null,
+          "forbidden_document_title": null
+        },
+        {
+          "id": "deny-horizon",
+          "category": "unanswerable",
+          "passed": false,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": null,
+          "forbidden_document_title": "Executive Board Expansion"
+        },
+        {
+          "id": "deny-budget",
+          "category": "unanswerable",
+          "passed": false,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": null,
+          "forbidden_document_title": "Confidential Strategic Budget"
+        },
+        {
+          "id": "deny-cross-department",
+          "category": "unanswerable",
+          "passed": false,
+          "retrieved_titles": [
+            "Confidential Strategic Budget 2026 (FIN-CONFIDENTIAL)",
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)",
+            "SOP-ENG-042: High-Precision Component Tolerances"
+          ],
+          "expected_document_title": null,
+          "forbidden_document_title": "Product Launch Roadmap"
+        }
+      ]
+    },
+    "hybrid": {
+      "mode": "hybrid",
+      "case_count": 20,
+      "answerable_recall_at_5": 1.0,
+      "abstention_accuracy": 1.0,
+      "access_control_accuracy": 1.0,
+      "passed_cases": 20,
+      "details": [
+        {
+          "id": "leave-days",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)",
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Company Handbook",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "sick-days",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Company Handbook",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "working-hours",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Company Handbook",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "external-ai",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Company Handbook & Leave Policy (HR-001)"
+          ],
+          "expected_document_title": "Company Handbook",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "sprint-22",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Product Launch Roadmap (Q4 2026)"
+          ],
+          "expected_document_title": "Product Launch Roadmap",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "launch-target",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Product Launch Roadmap (Q4 2026)"
+          ],
+          "expected_document_title": "Product Launch Roadmap",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "critical-sla",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Client Operations Standard Procedure (SOP-OPS-202)"
+          ],
+          "expected_document_title": "Client Operations Standard Procedure",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "uptime",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Client Operations Standard Procedure (SOP-OPS-202)"
+          ],
+          "expected_document_title": "Client Operations Standard Procedure",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "budget-total",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Confidential Strategic Budget 2026 (FIN-CONFIDENTIAL)"
+          ],
+          "expected_document_title": "Confidential Strategic Budget",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "budget-approval",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Confidential Strategic Budget 2026 (FIN-CONFIDENTIAL)"
+          ],
+          "expected_document_title": "Confidential Strategic Budget",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "bonus-pool",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Executive Board Expansion & Compensation Plan (RESTRICTED)"
+          ],
+          "expected_document_title": "Executive Board Expansion",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "project-horizon",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "Executive Board Expansion & Compensation Plan (RESTRICTED)"
+          ],
+          "expected_document_title": "Executive Board Expansion",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "tolerance",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "SOP-ENG-042: High-Precision Component Tolerances"
+          ],
+          "expected_document_title": "SOP-ENG-042",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "yield",
+          "category": "answerable",
+          "passed": true,
+          "retrieved_titles": [
+            "SOP-ENG-042: High-Precision Component Tolerances"
+          ],
+          "expected_document_title": "SOP-ENG-042",
+          "forbidden_document_title": null
+        },
+        {
+          "id": "no-dental",
+          "category": "unanswerable",
+          "passed": true,
+          "retrieved_titles": [],
+          "expected_document_title": null,
+          "forbidden_document_title": null
+        },
+        {
+          "id": "no-parking",
+          "category": "unanswerable",
+          "passed": true,
+          "retrieved_titles": [],
+          "expected_document_title": null,
+          "forbidden_document_title": null
+        },
+        {
+          "id": "no-stock-options",
+          "category": "unanswerable",
+          "passed": true,
+          "retrieved_titles": [],
+          "expected_document_title": null,
+          "forbidden_document_title": null
+        },
+        {
+          "id": "deny-horizon",
+          "category": "unanswerable",
+          "passed": true,
+          "retrieved_titles": [],
+          "expected_document_title": null,
+          "forbidden_document_title": "Executive Board Expansion"
+        },
+        {
+          "id": "deny-budget",
+          "category": "unanswerable",
+          "passed": true,
+          "retrieved_titles": [],
+          "expected_document_title": null,
+          "forbidden_document_title": "Confidential Strategic Budget"
+        },
+        {
+          "id": "deny-cross-department",
+          "category": "unanswerable",
+          "passed": true,
+          "retrieved_titles": [],
+          "expected_document_title": null,
+          "forbidden_document_title": "Product Launch Roadmap"
+        }
+      ]
+    }
+  }
+}
